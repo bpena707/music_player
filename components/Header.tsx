@@ -2,7 +2,9 @@
 
 import { useRouter } from "next/navigation"
 import { twMerge } from "tailwind-merge"
-import { RxCaretLeft } from "react-icons/rx"
+import { RxCaretLeft, RxCaretRight } from "react-icons/rx"
+import { HiHome } from "react-icons/hi"
+import { BiSearch } from "react-icons/bi"
 
 interface HeaderProps {
     children: React.ReactNode
@@ -23,11 +25,33 @@ const Header: React.FC<HeaderProps> = ({
     <div className={twMerge(`h-fit bg-gradient-to-b from-emerald-800 p-6`, className)}>
         {/* this div is for the items at the top of the header which centers it all  */}
         <div className="w-full mb-4 flex items-center justify-between">
+            {/* the buttons use the router to go back and forth within the application.  */}
             <div className="hidden md:flex gap-x-2 items-center">
-                <button className="rounded-full bg-black flex items-center justify-center hover:opacity-75 transition">
+                <button 
+                    onClick={() => router.back()}
+                    className="rounded-full bg-black flex items-center justify-center hover:opacity-75 transition"
+                >
                     <RxCaretLeft className="text-white" size={35} />
                 </button>
-
+                <button 
+                    onClick={() => router.forward()}
+                    className="rounded-full bg-black flex items-center justify-center hover:opacity-75 transition"
+                >
+                    <RxCaretRight className="text-white" size={35} />
+                </button>
+            </div>
+            {/* this div appears when the user is in modbile view which replaces the back and forward buttons with home and search */}
+            <div className="flex md:hidden gap-x-2 items-center">
+                <button
+                    className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition"
+                >
+                    <HiHome className="text-black" size={20}/>
+                </button>
+                <button
+                    className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition"
+                >
+                    <BiSearch className="text-black" size={20}/>
+                </button>
             </div>
         </div>
     </div>
