@@ -1,3 +1,5 @@
+/* this header component is what displays at the top of the main page */
+
 'use client'
 
 import { useRouter } from "next/navigation"
@@ -5,6 +7,7 @@ import { twMerge } from "tailwind-merge"
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx"
 import { HiHome } from "react-icons/hi"
 import { BiSearch } from "react-icons/bi"
+import Button from "./Button"
 
 interface HeaderProps {
     children: React.ReactNode
@@ -53,7 +56,30 @@ const Header: React.FC<HeaderProps> = ({
                     <BiSearch className="text-black" size={20}/>
                 </button>
             </div>
+            <div className="flex justify-between items-center gap-x-4" >
+                {/* this content will be dynamic whether we are logged in or not which is why its fragmented both buttons have thier own divs */}
+                <>
+                    <div>
+                        <Button
+                            onClick={() => {}}
+                            className="bg-transparent text-neutral-300 font-medium"
+                        >
+                            Sign Up
+                        </Button>
+                    </div>
+                    <div>
+                        <Button
+                            onClick={() => {}}
+                            className="bg-white px-6 py-2"
+                        >
+                            Log in
+                        </Button>
+                    </div>
+                </>
+            </div>
         </div>
+        {/* this is where the page.tsx is rendered which is under the header */}
+        {children}
     </div>
   )
 }
